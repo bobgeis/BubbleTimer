@@ -1,7 +1,9 @@
- 
+
 ### Bubble Timer
 
 This is a simple timer program that I made to learn about coffeescript.
+
+Try it [here.](http://bobgeis.github.io/BubbleTimer/)
 
 Sound: [Bubbles Sounds recorded by Mike Koenig](http://soundbible.com/1137-Bubbles.html);
 licensed under [Creative Commons Attribution 3.0](http://creativecommons.org/licenses/by/3.0/)
