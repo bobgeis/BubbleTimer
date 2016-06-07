@@ -38,9 +38,14 @@ class CircleTimer
 			@ctx.closePath()
 		# draw the outline
 		if @t < 0
-			@ctx.strokeStyle = '#FF0000'
-			@ctx.lineWidth = 3
-			strokeArc = @getArc()
+			if @paused
+				@ctx.strokeStyle = '#FFAA00'
+				@ctx.lineWidth = 3
+				strokeArc = @getArc()
+			else
+				@ctx.strokeStyle = '#FF0000'
+				@ctx.lineWidth = 3
+				strokeArc = @getArc()
 		else
 			@ctx.strokeStyle = '#000000'
 			@ctx.lineWidth = 1
@@ -54,12 +59,12 @@ class CircleTimer
 		@r * 1000
 
 	getR : ->
-		if @t > 0  
+		if @t > 0
 			@r
 		else
-			(@tM + @t) / @tM * @r			
+			(@tM + @t) / @tM * @r
 	getArc : ->
-		- H.HALFPI - @t / @tM * H.TWOPI 		
+		- H.HALFPI - @t / @tM * H.TWOPI
 
 	update : (dt) ->
 		if !@paused
@@ -67,13 +72,13 @@ class CircleTimer
 			@t -= dt
 			if tOld > 0 and @t < 0
 				H.playSound()
-		if @t < -@tM 
+		if @t < -@tM
 			return this
 		else
 			return null
 
 	posInside : (pos) ->
-		r = H.distance @pos, pos 
+		r = H.distance @pos, pos
 		if r < @r
 			true
 		else

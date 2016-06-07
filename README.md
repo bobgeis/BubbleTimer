@@ -1,4 +1,4 @@
- 
+
 ### Bubble Timer
 
 This is a simple timer program that I made to learn about coffeescript.

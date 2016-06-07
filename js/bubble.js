@@ -39,9 +39,15 @@
         this.ctx.closePath();
       }
       if (this.t < 0) {
-        this.ctx.strokeStyle = '#FF0000';
-        this.ctx.lineWidth = 3;
-        strokeArc = this.getArc();
+        if (this.paused) {
+          this.ctx.strokeStyle = '#FFAA00';
+          this.ctx.lineWidth = 3;
+          strokeArc = this.getArc();
+        } else {
+          this.ctx.strokeStyle = '#FF0000';
+          this.ctx.lineWidth = 3;
+          strokeArc = this.getArc();
+        }
       } else {
         this.ctx.strokeStyle = '#000000';
         this.ctx.lineWidth = 1;
