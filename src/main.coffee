@@ -63,11 +63,17 @@ setup = ->
 	$('#addCanvasHere').append(jcanvas)
 	# OR we can append it directly to the body, if there's nothing else
 	# $('body').append(jcanvas)
-	jcanvas.mousedown(handleMouseDown)
-	jcanvas.mouseup(handleMouseUp)
-	jcanvas.mousemove(handleMouseMove)
-	jcanvas.mouseout(handleMouseOut)
+	console.log jcanvas
 	canvas = jcanvas[0]
+	console.log canvas
+	canvas.addEventListener "mousedown", handleMouseDown
+	canvas.addEventListener "mouseup", handleMouseUp
+	canvas.addEventListener "mousemove", handleMouseMove
+	canvas.addEventListener "mouseout", handleMouseOut
+	canvas.addEventListener "touchstart", handleMouseDown
+	canvas.addEventListener "touchend", handleMouseUp
+	canvas.addEventListener "touchmove", handleMouseMove
+	canvas.addEventListener "touchleave", handleMouseOut
 	ctx = canvas.getContext '2d'
 	setCanvasSize()
 	window.addEventListener('keyup',handleKeyUp)
@@ -99,7 +105,7 @@ update = (dt) ->
 				cull_circles.push cull_circle
 	if cull_circles.length > 0
 		circles = _.difference(circles,cull_circles)
-		cull_circles = []		
+		cull_circles = []
 
 draw = (dt) ->
 
@@ -183,7 +189,7 @@ handleMouseUp = (event)	->
 	else
 		for circle in H.flipList circles
 			if circle.posInside stop
-				if event.shiftKey 
+				if event.shiftKey
 					cull_circles.push circle
 					return 	# return if we only want to affect the top circle
 				else
@@ -201,7 +207,7 @@ handleKeyUp = (event) ->
 	if event.code == 'Space'
 		pauseAll = !pauseAll
 	if event.code == 'Enter'
-		saveCircles()	
+		saveCircles()
 
 handleWindowResize = (event) ->
 	windowResized = true
@@ -209,7 +215,7 @@ handleWindowResize = (event) ->
 
 
 # this will be executed once everything else is finished!
-$ -> 
+$ ->
 	console.log '$ -> begins'
 	_first.applyAllModules()
 	setup()

@@ -18,19 +18,24 @@ class CircleTimer
 		@tM = @getDuration()
 		@t = t or @tM
 		@paused = paused or false
-		@_grad = @ctx.createRadialGradient @pos.x, @pos.y, @r, @pos.x, @pos.y, 0
+		# these gradients broke with chrome 65, replacing with flat colors for now
+		# @_grad = @ctx.createRadialGradient @pos.x, @pos.y, @r, @pos.x, @pos.y, 0
 
 	draw : ->
 		# fill the circle
 		if @t > 0
 			if @paused
-				@_grad.addColorStop 0, "rgba(100, 0, 200, 0.5)"
-				@_grad.addColorStop 1, "rgba(255, 255, 255, 0.5"
-				@ctx.fillStyle = @_grad
+				# these gradients broke with chrome 65, replacing with flat colors for now
+				# @_grad.addColorStop 0, "rgba(100, 0, 200, 0.5)"
+				# @_grad.addColorStop 1, "rgba(255, 255, 255, 0.5)"
+				# @ctx.fillStyle = @_grad
+        @ctx.fillStyle = "rgba(100, 0, 200, 0.5)"
 			else
-				@_grad.addColorStop 0, "rgba(0, 100, 200, 0.5)"
-				@_grad.addColorStop 1, "rgba(255, 255, 255, 0.5"
-				@ctx.fillStyle = @_grad
+				# these gradients broke with chrome 65, replacing with flat colors for now
+				# @_grad.addColorStop 0, "rgba(0, 100, 200, 0.5)"
+				# @_grad.addColorStop 1, "rgba(255, 255, 255, 0.5)"
+				# @ctx.fillStyle = @_grad
+        @ctx.fillStyle = "rgba(0, 100, 200, 0.5)"
 			@ctx.beginPath()
 			@ctx.arc(@pos.x,@pos.y,@r,-H.HALFPI,@getArc(),true)
 			@ctx.lineTo(@pos.x,@pos.y)
